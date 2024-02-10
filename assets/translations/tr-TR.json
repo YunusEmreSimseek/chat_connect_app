@@ -1,0 +1,133 @@
+{
+    "general": {
+        "appName":"Sohbete Bağlan",
+        "languge":{
+            "turkish":"Türkçe",
+            "english":"İngilizce"
+        },
+        "button": {
+            "signIn":"Giriş Yap",
+            "signUp":"Kayıt Ol",
+            "signOut":"Çıkış Yap"
+        },
+        "page": {
+            "home":"Ana Sayfa",
+            "chats":"Sohbetler",
+            "settings":"Ayarlar",
+            "profile":"Profil"          
+        },
+        "fieldType":{
+            "email":"Email",
+            "password":"Şifre",
+            "confirmPassword":"Şifreyi Doğrulayınız",
+            "name":"İsim",
+            "phoneNumber":"Telefon Numarası"
+        }
+    },
+    "dialog":{
+        "login":{
+            "unsuccessful":{
+                "title":"Login Failed",
+                "content":"Wrong email or password."
+            }},
+        "register":{
+            "succes":{
+                "title":"Kayıt Başarılı",
+                "content":"Başarıyla kayıt oldunuz."
+            },
+            "denied":{
+                "title":"Kayıt Başarısız",
+                "content":"Kayıt işleminiz başarısızlıkla sonuçlandı."
+            }
+            
+        },
+
+        "chat":{
+            "adding":{
+                "body":{
+                    "title":"İletişim Kurmak İstediğiniz Numarayı Giriniz",
+                    "button":"İletişime Geç"
+                },
+                "successful":{
+                    "title":"Ekleme Başarılı",
+                    "content":"Kullanıcı başarıyla eklendi."
+                },
+                "unsuccessful":{
+                    "title":"Ekleme Başarısız",
+                    "content":"Kullanıcı ekleme işlemi başarısız."
+                }
+            }
+        },
+        "home":{
+            "addPost":{
+                "body":{
+                    "title":"Paylaşmak İstediğiniz İçeriği Giriniz",
+                    "button":"Paylaş"
+                },
+                "successful":{
+                    "title":"Paylaşım Başarılı",
+                    "content":"Gönderiniz başarıyla paylaşıldı."
+                },
+                "unsuccessful":{
+                    "title":"Paylaşım Başarısız",
+                    "content":"Paylaşımınız bilinmeyen bir sebeple başarısız oldu."
+                }
+               }
+        },
+        "profile":{
+            "changes":{
+                "successful":{
+                    "title":"Başarılı",
+                    "content":"Değişikliliker başarıyla kayedildi."
+                },
+                "unsuccessful":{
+                    "title":"Başarısız",
+                    "content":"Değişiklilikler kaydedilemedi."
+                }
+            }
+        },
+        "languge":{
+            "title":{
+                "languges":"Diller"
+            }
+        }
+    },
+    "splash":{
+        "title":"Bağlı kal, heran, heryerde",
+        "subtitle":"Sonsuz iletişimi keşfet.",
+        "welcome":"Hoşgeldin"
+    },
+    "login":{
+        "title":"Giriş Yap",
+        "rememberMe":"Beni Hatırla",
+        "dontHaveAccount":"Bir hesabın yok mu ?"
+    },
+    "register":{
+        "title":"Kayıt Ol",
+        "alreadyHaveAccount":"Zaten bir hesabın mı var ?"
+    },
+    "validation":{
+        "email":"Geçerli bir mail giriniz",
+        "password":"Şifreniz 8-16 karakter arasında olmalı ve en az birer tane küçük,büyük harf ve rakam içermeli",
+        "name":"Boş bırakılamaz",
+        "phone":"Geçerli bir telefon numarası giriniz"
+    },
+    "settings":{
+        "title":{
+            "editProfile":"Profili Düzenle",
+            "languge":"Dil",
+            "notifications":"Bildirimler",
+            "appSettings":"Uygulama Ayarları",
+            "support":"Destek"
+        }
+    },
+    "profile":{
+        "title":{
+            "changePicture":"Profil Resmini Değiştir"
+        },
+        "button":{
+            "saveChanges":"Değişiklilikleri Kaydet"
+        }
+    }
+
+}

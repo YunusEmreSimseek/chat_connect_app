@@ -1,0 +1,134 @@
+{
+    "general": {
+        "appName":"Chat Connect",
+        "languge":{
+            "turkish":"Turkish",
+            "english":"English"
+        },
+        "button": {
+            "signIn":"Sign In",
+            "signUp":"Sign Up",
+            "signOut":"Sign Out"
+            
+        },
+        "page": {
+            "home":"Home",
+            "chats":"Chats",
+            "settings":"Settings",
+            "profile":"Profile"          
+        },
+        "fieldType":{
+            "email":"Email",
+            "password":"Password",
+            "confirmPassword":"Confirm Password",
+            "name":"Name",
+            "phoneNumber":"Phone Number"
+        }
+    },
+    "dialog":{
+        "login":{
+            "unsuccessful":{
+                "title":"Login Failed",
+                "content":"Wrong email or password."
+            }        
+        },
+        "register":{
+            "succes":{
+                "title":"Registration Successful",
+                "content":"You have succesfully registered."
+            },
+            "denied":{
+                "title":"Registration Failed",
+                "content":"Your registration failed."
+            }
+        },
+        "chat":{
+            "adding":{
+                "body":{
+                    "title":"Enter The Number You Want To Contact",
+                    "button":"Get Contact"
+                },
+                "successful":{
+                    "title":"Adding Successful",
+                    "content":"User added succesfully."
+                },
+                "unsuccessful":{
+                    "title":"Adding Unsuccessful",
+                    "content":"User added unsuccessfully."
+                }
+            }
+        },
+        "home":{
+            "addPost":{
+                "body":{
+                    "title":"Enter The Content You Want To Share",
+                    "button":"Share"
+                },
+                "successful":{
+                    "title":"Sharing Successful",
+                    "content":"Your post has been shared successfully."
+                },
+                "unsuccessful":{
+                    "title":"Sharing Unsuccessful",
+                    "content":"Your post could not be shared for an unknown reason."
+                }
+               }
+        },
+        "profile":{
+            "changes":{
+                "successful":{
+                    "title":"Succesful",
+                    "content":"Changes saved successfully."
+                },
+                "unsuccessful":{
+                    "title":"Unsuccessful",
+                    "content":"Changes could not be saved."
+                }
+            }
+        },
+        "languge":{
+            "title":{
+                "languges":"Languges"
+            }
+        }
+    },
+    "splash":{
+        "title":"Stay connected, anytime, anywhere.",
+        "subtitle":"Discover endless conservations.",
+        "welcome":"Welcome to"
+    },
+    "login":{
+        "title":"Sign In",
+        "rememberMe":"Remember Me",
+        "dontHaveAccount":"Don't have an account ?"
+    },
+    "register":{
+        "title":"Sign Up",
+        "alreadyHaveAccount":"Already have an account ?"
+
+    },
+    "validation":{
+        "email":"Enter valid email",
+        "password":"Your password must be 8-16 characters, and include at least one lowercase letter, one uppercase letter, and a number",
+        "name":"Cannot be empty",
+        "phone":"Enter valid phone number"
+    },
+    "settings":{
+        "title":{
+            "editProfile":"Edit Profile",
+            "languge":"Languge",
+            "notifications":"Notifications",
+            "appSettings":"App Settings",
+            "support":"Support"
+        }
+    },
+    "profile":{
+        "title":{
+            "changePicture":"Change profile picture"
+        },
+        "button":{
+            "saveChanges":"Save Changes"
+        }
+    }
+
+}
