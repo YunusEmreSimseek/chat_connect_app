@@ -105,7 +105,6 @@ class ChattedUserTextsButton extends StatelessWidget {
                     context.sized.emptySizedHeightBoxLow,
                     CustomText(
                       state.chattedUsers![index].name!,
-                      //size: FontSizeEnum.medium,
                       size: FontSizeEnum.lowMid,
                       isBold: true,
                     ),
@@ -124,7 +123,7 @@ class ChattedUserTextsButton extends StatelessWidget {
               context.sized.emptySizedWidthBoxLow3x,
               Container(
                 margin: EdgeInsets.only(top: context.sized.dynamicHeight(.0375)),
-                width: context.sized.dynamicWidth(.1),
+                width: context.sized.dynamicWidth(.15),
                 child: state.chats?[index].chats?.isEmpty ?? true
                     ? const SizedBox.shrink()
                     : CustomText(
