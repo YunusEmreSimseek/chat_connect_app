@@ -42,11 +42,17 @@ The only purpose of doing this application is to improve myself.
 ### Prewiew
 
 <img src="/screenshots/login_screen_1.png" height="500"> <img src="/screenshots/register_screen.png" height="500"> 
-<img src="/screenshots/login_screen_2.png" <br> height="500"> <img src="/screenshots/chats_screen_1.png" height="500"> 
+<img src="/screenshots/login_screen_2.png" height="500"> 
+
+<img src="/screenshots/chats_screen_1.png" height="500"> 
 <img src="/screenshots/chat_detail_screen.png" height="500"> <img src="/screenshots/chats_screen_2.png" height="500"> 
+
 <img src="/screenshots/chats_screen_3.png" height="500"> <img src="/screenshots/home_screen_1.png" height="500"> 
-<img src="/screenshots/home_screen_2.png" height="500"> <img src="/screenshots/settings_screen_1.png" height="500"> 
+<img src="/screenshots/home_screen_2.png" height="500">
+
+ <img src="/screenshots/settings_screen_1.png" height="500"> 
 <img src="/screenshots/settings_screen_2.png" height="500"> <img src="/screenshots/settings_screen_3.png" height="500"> 
+
 <img src="/screenshots/profile_screen.png" height="500">
 
 
