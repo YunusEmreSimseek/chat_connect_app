@@ -116,7 +116,6 @@ class ChattedUserTextsButton extends StatelessWidget {
                             state.chats![index].chats?.last!.content! ?? '',
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            //style: TextStyle(fontSize: FontSizeEnum.lowMid.value),
                             style: TextStyle(fontSize: FontSizeEnum.lowMid.value),
                           ),
                   ],

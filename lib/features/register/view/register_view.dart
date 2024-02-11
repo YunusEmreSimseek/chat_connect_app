@@ -1,13 +1,12 @@
 import 'package:chat_connect_app/features/register/cubit/register_cubit.dart';
 import 'package:chat_connect_app/features/register/mixin/register_mixin.dart';
-import 'package:chat_connect_app/product/enums/font_size_enum.dart';
 import 'package:chat_connect_app/product/enums/text_field_type_enum.dart';
 import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
 import 'package:chat_connect_app/product/widgets/buttons/signs_button.dart';
 import 'package:chat_connect_app/product/widgets/buttons/underline_text_button.dart';
 import 'package:chat_connect_app/product/widgets/field/custom_text_form_field.dart';
 import 'package:chat_connect_app/product/widgets/images/core_image.dart';
-import 'package:chat_connect_app/product/widgets/text/custom_text.dart';
+import 'package:chat_connect_app/product/widgets/text/appbar_title_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +40,7 @@ class _RegisterViewState extends State<RegisterView> with RegisterMixin {
           scrollToBottomOnKeyboardOpen();
         }
         return Scaffold(
-          appBar: AppBar(title: CustomText(LocaleKeys.register_title.tr(), size: FontSizeEnum.high), actions: [
+          appBar: AppBar(title: const AppBarTitleText(LocaleKeys.register_title), actions: [
             Center(
               child: state.isLoading ? const CircularProgressIndicator() : null,
             )
