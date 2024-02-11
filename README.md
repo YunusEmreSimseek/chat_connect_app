@@ -8,7 +8,7 @@ Stay connected to the conversation by creating an account in just a minute.
 
 The only purpose of doing this application is to improve myself.
 
-###Features
+### Features
 
 - Chats : The page where you can see the people you are in contact with and make new contacts.
 - Home : The page where you can share all kinds of situations with the people you are in contact with on a daily basis and see what is shared.
@@ -17,8 +17,8 @@ The only purpose of doing this application is to improve myself.
 
 ### Built With
 
-##### Flutter [Heading link](https://flutter.dev/
-#### #Dart [Heading link](https://dart.dev/
+##### Flutter [Heading link](https://flutter.dev/)
+##### Dart [Heading link](https://dart.dev/)
 
 ### Packages
 
@@ -42,7 +42,7 @@ The only purpose of doing this application is to improve myself.
 ### Prewiew
 
 <img src="/screenshots/login_screen_1.png" height="500"> <img src="/screenshots/register_screen.png" height="500"> 
-<img src="/screenshots/login_screen_2.png" height="500"> <img src="/screenshots/chats_screen_1.png" height="500"> 
+<img src="/screenshots/login_screen_2.png" <br> height="500"> <img src="/screenshots/chats_screen_1.png" height="500"> 
 <img src="/screenshots/chat_detail_screen.png" height="500"> <img src="/screenshots/chats_screen_2.png" height="500"> 
 <img src="/screenshots/chats_screen_3.png" height="500"> <img src="/screenshots/home_screen_1.png" height="500"> 
 <img src="/screenshots/home_screen_2.png" height="500"> <img src="/screenshots/settings_screen_1.png" height="500"> 
