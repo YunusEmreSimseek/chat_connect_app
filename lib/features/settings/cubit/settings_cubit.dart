@@ -1,11 +1,12 @@
 import 'package:chat_connect_app/features/settings/service/settings_service.dart';
 import 'package:chat_connect_app/product/models/user_model.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'settings_state.dart';
 
-class SettingsCubit extends Cubit<SettingsState> {
+final class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit() : super(const SettingsState());
 
   final ISettingsService _settingsService = SettingsService();

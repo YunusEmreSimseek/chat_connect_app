@@ -1,5 +1,6 @@
 part of 'chat_cubit.dart';
 
+@immutable
 final class ChatState extends Equatable {
   const ChatState({
     this.loggedInUser,

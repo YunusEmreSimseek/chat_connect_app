@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'chat_detail_state.dart';
 
-class ChatDetailCubit extends Cubit<ChatDetailState> {
+final class ChatDetailCubit extends Cubit<ChatDetailState> {
   ChatDetailCubit() : super(const ChatDetailState());
 
   final IChatDetailService _chatDetailService = ChatDetailService();

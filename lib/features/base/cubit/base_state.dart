@@ -1,5 +1,6 @@
 part of 'base_cubit.dart';
 
+@immutable
 final class BaseState extends Equatable {
   const BaseState({
     this.currentIndex = 1,

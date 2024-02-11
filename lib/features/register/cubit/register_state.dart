@@ -1,5 +1,6 @@
 part of 'register_cubit.dart';
 
+@immutable
 final class RegisterState extends Equatable {
   final bool obscureText;
   final bool isLoading;

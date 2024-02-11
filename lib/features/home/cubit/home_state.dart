@@ -1,5 +1,6 @@
 part of 'home_cubit.dart';
 
+@immutable
 final class HomeState extends Equatable {
   final UserModel? loggedInUser;
   final List<UserModel>? postedUsers;

@@ -7,7 +7,6 @@ import 'package:chat_connect_app/features/home/view/home_view.dart';
 import 'package:chat_connect_app/features/login/view/login_view.dart';
 import 'package:chat_connect_app/features/settings/cubit/settings_cubit.dart';
 import 'package:chat_connect_app/features/settings/view/settings_view.dart';
-import 'package:chat_connect_app/product/enums/current_index_enum.dart';
 import 'package:chat_connect_app/product/models/chat_model.dart';
 import 'package:chat_connect_app/product/models/message_model.dart';
 import 'package:chat_connect_app/product/models/user_model.dart';
@@ -17,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'base_state.dart';
 
-class BaseCubit extends Cubit<BaseState> {
+final class BaseCubit extends Cubit<BaseState> {
   BaseCubit() : super(const BaseState());
 
   final IBaseService _baseService = BaseService();
@@ -116,6 +115,6 @@ class BaseCubit extends Cubit<BaseState> {
   }
 
   void dispose() {
-    emit(BaseState(currentIndex: CurrentIndexEnum.chats.value));
+    emit(const BaseState());
   }
 }

@@ -2,11 +2,12 @@ import 'package:chat_connect_app/features/home/service/home_service.dart';
 import 'package:chat_connect_app/product/models/post_model.dart';
 import 'package:chat_connect_app/product/models/user_model.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
+final class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeState());
 
   final IHomeService _homeService = HomeService();

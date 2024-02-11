@@ -1,5 +1,6 @@
 part of 'chat_detail_cubit.dart';
 
+@immutable
 final class ChatDetailState extends Equatable {
   final UserModel? loggedInUser;
   final UserModel? chattingUser;
