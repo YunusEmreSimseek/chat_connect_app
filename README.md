@@ -17,8 +17,8 @@ The only purpose of doing this application is to improve myself.
 
 ### Built With
 
-##### Flutter [Heading link](https://flutter.dev/)
-##### Dart [Heading link](https://dart.dev/)
++ [Flutter](https://flutter.dev/)
++ [Dart](https://dart.dev/)
 
 ### Packages
 
