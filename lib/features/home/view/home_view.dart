@@ -1,19 +1,14 @@
+import 'dart:async';
+
 import 'package:chat_connect_app/features/home/cubit/home_cubit.dart';
-import 'package:chat_connect_app/features/home/mixin/home_mixin.dart';
-import 'package:chat_connect_app/product/enums/font_size_enum.dart';
-import 'package:chat_connect_app/product/enums/image_enum.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/models/post_model.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
-import 'package:chat_connect_app/product/utility/extensions/datetime_extension.dart';
-import 'package:chat_connect_app/product/widgets/images/user_image.dart';
-import 'package:chat_connect_app/product/widgets/loadings/loading_or_button_widget.dart';
-import 'package:chat_connect_app/product/widgets/text/appbar_title_text.dart';
-import 'package:chat_connect_app/product/widgets/text/custom_text.dart';
+import 'package:chat_connect_app/products/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 
+part '../mixin/home_mixin.dart';
 part 'sub_view/post_card.dart';
 
 class HomeView extends StatefulWidget {
@@ -23,20 +18,7 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> with HomeMixin {
-  @override
-  void initState() {
-    super.initState();
-    initController();
-    initAndListenStream();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    disposeStream();
-  }
-
+class _HomeViewState extends State<HomeView> with BaseViewMixin, HomeMixin {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(

@@ -1,20 +1,23 @@
-import 'dart:async';
+part of '../view/chat_view.dart';
 
-import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
-import 'package:chat_connect_app/features/chat/cubit/chat_cubit.dart';
-import 'package:chat_connect_app/features/chat/view/chat_view.dart';
-import 'package:chat_connect_app/product/firebase/firebase_collections.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/widgets/dialogs/general_show_dialog.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-mixin ChatMixin on State<ChatView> {
+mixin ChatMixin on State<ChatView>, BaseViewMixin<ChatView> {
   Stream<QuerySnapshot>? stream;
   late final TextEditingController phoneNumberController;
   StreamSubscription? streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    initAndListenStream();
+    initController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposeController();
+    disposeStreams();
+  }
 
   void initAndListenStream() {
     if (!mounted) return;
@@ -26,12 +29,14 @@ mixin ChatMixin on State<ChatView> {
     if (stream != null) {
       streamSubscription = stream!.listen((snapshot) async {
         await context.read<BaseCubit>().fetchChats();
-        if (!mounted) return;
-        context.read<BaseCubit>().sendChatsToStates(context);
-        await context.read<BaseCubit>().fetchChattedUsers();
-        if (!mounted) return;
-        context.read<BaseCubit>().sendChattedUsersToChatState(context);
-        context.read<BaseCubit>().sendPostedUsersToHomeState(context);
+        safeOperation(() async {
+          context.read<BaseCubit>().sendChatsToStates(context);
+          await context.read<BaseCubit>().fetchChattedUsers();
+        });
+        safeOperation(() async {
+          context.read<BaseCubit>().sendChattedUsersToChatState(context);
+          context.read<BaseCubit>().sendPostedUsersToHomeState(context);
+        });
       });
     }
   }
@@ -53,27 +58,28 @@ mixin ChatMixin on State<ChatView> {
   void addChat() {
     Future<void> onPressed({required TextEditingController controller}) async {
       if (controller.text.length == 10) {
-        context.read<BaseCubit>().changeLoading();
+        changeLoading();
         final response = await context.read<ChatCubit>().addChat(controller.text);
-        if (!mounted) return;
-        context.read<BaseCubit>().changeLoading();
+        changeLoading();
         if (response) {
-          if (!mounted) return;
           phoneNumberController.clear();
-          Navigator.pop(context);
+          safeOperation(() async {
+            Navigator.pop(context);
 
-          GeneralShowDialog.dialog(
-              context: context,
-              title: LocaleKeys.dialog_chat_adding_successful_title.tr(),
-              subtitle: LocaleKeys.dialog_chat_adding_successful_content.tr());
+            GeneralShowDialog.dialog(
+                context: context,
+                title: LocaleKeys.dialog_chat_adding_successful_title.tr(),
+                subtitle: LocaleKeys.dialog_chat_adding_successful_content.tr());
+          });
           return;
         }
         if (!response) {
-          if (!mounted) return;
-          GeneralShowDialog.dialog(
-              context: context,
-              title: LocaleKeys.dialog_chat_adding_unsuccessful_title.tr(),
-              subtitle: LocaleKeys.dialog_chat_adding_unsuccessful_content.tr());
+          safeOperation(() async {
+            GeneralShowDialog.dialog(
+                context: context,
+                title: LocaleKeys.dialog_chat_adding_unsuccessful_title.tr(),
+                subtitle: LocaleKeys.dialog_chat_adding_unsuccessful_content.tr());
+          });
         }
       }
     }

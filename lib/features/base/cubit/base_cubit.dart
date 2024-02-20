@@ -7,9 +7,9 @@ import 'package:chat_connect_app/features/home/view/home_view.dart';
 import 'package:chat_connect_app/features/login/view/login_view.dart';
 import 'package:chat_connect_app/features/settings/cubit/settings_cubit.dart';
 import 'package:chat_connect_app/features/settings/view/settings_view.dart';
-import 'package:chat_connect_app/product/models/chat_model.dart';
-import 'package:chat_connect_app/product/models/message_model.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
+import 'package:chat_connect_app/products/models/chat_model.dart';
+import 'package:chat_connect_app/products/models/message_model.dart';
+import 'package:chat_connect_app/products/models/user_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,10 +92,6 @@ final class BaseCubit extends Cubit<BaseState> {
 
   void changeCurrentIndex(int value) {
     emit(state.copyWith(currentIndex: value));
-  }
-
-  void changeLoading() {
-    emit(state.copyWith(isLoading: !state.isLoading));
   }
 
   Widget decisionBody() {

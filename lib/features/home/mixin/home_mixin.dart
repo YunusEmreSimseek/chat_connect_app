@@ -1,21 +1,22 @@
-import 'dart:async';
+part of '../view/home_view.dart';
 
-import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
-import 'package:chat_connect_app/features/home/cubit/home_cubit.dart';
-import 'package:chat_connect_app/features/home/view/home_view.dart';
-import 'package:chat_connect_app/product/firebase/firebase_collections.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
-import 'package:chat_connect_app/product/widgets/dialogs/general_show_dialog.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-mixin HomeMixin on State<HomeView> {
+mixin HomeMixin on State<HomeView>, BaseViewMixin<HomeView> {
   late final TextEditingController postController;
   Stream<QuerySnapshot>? stream;
   StreamSubscription? streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    initController();
+    initAndListenStream();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposeStream();
+  }
 
   void initController() {
     postController = TextEditingController();
@@ -27,7 +28,7 @@ mixin HomeMixin on State<HomeView> {
         .snapshots();
     if (stream != null) {
       streamSubscription = stream!.listen((snapshot) async {
-        await context.read<HomeCubit>().fetchPosts();
+        safeOperation(() async => await context.read<HomeCubit>().fetchPosts());
       });
     }
   }
@@ -58,28 +59,28 @@ mixin HomeMixin on State<HomeView> {
   }
 
   Future<void> addPost() async {
-    context.read<BaseCubit>().changeLoading();
+    changeLoading();
     if (postController.text.isEmpty) return;
     final response = await context.read<HomeCubit>().addPost(postController.text);
-    if (!mounted) return;
-    context.read<BaseCubit>().changeLoading();
+    changeLoading();
     if (response) {
-      if (!mounted) return;
       postController.clear();
-      Navigator.pop(context);
-      if (!mounted) return;
-      GeneralShowDialog.dialog(
-          context: context,
-          title: LocaleKeys.dialog_home_addPost_successful_title.tr(),
-          subtitle: LocaleKeys.dialog_home_addPost_successful_content.tr());
+      directSafeOperarion(() {
+        Navigator.pop(context);
+        GeneralShowDialog.dialog(
+            context: context,
+            title: LocaleKeys.dialog_home_addPost_successful_title.tr(),
+            subtitle: LocaleKeys.dialog_home_addPost_successful_content.tr());
+      });
       return;
     }
     if (!response) {
-      if (!mounted) return;
-      GeneralShowDialog.dialog(
-          context: context,
-          title: LocaleKeys.dialog_home_addPost_unsuccessful_title.tr(),
-          subtitle: LocaleKeys.dialog_home_addPost_unsuccessful_content.tr());
+      directSafeOperarion(() {
+        GeneralShowDialog.dialog(
+            context: context,
+            title: LocaleKeys.dialog_home_addPost_unsuccessful_title.tr(),
+            subtitle: LocaleKeys.dialog_home_addPost_unsuccessful_content.tr());
+      });
     }
   }
 }

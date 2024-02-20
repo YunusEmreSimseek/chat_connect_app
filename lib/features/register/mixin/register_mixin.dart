@@ -1,23 +1,24 @@
-import 'package:chat_connect_app/features/base/view/base_scaffold.dart';
-import 'package:chat_connect_app/features/login/view/login_view.dart';
-import 'package:chat_connect_app/features/register/cubit/register_cubit.dart';
-import 'package:chat_connect_app/features/register/view/register_view.dart';
-import 'package:chat_connect_app/product/enums/image_enum.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
-import 'package:chat_connect_app/product/widgets/dialogs/general_show_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kartal/kartal.dart';
+part of '../view/register_view.dart';
 
-mixin RegisterMixin on State<RegisterView> {
+mixin RegisterMixin on State<RegisterView>, BaseViewMixin<RegisterView> {
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final TextEditingController passwordConfirmController;
   late final TextEditingController nameController;
   late final ScrollController scrollController;
   late final GlobalKey<FormState> formKey;
+
+  @override
+  void initState() {
+    super.initState();
+    initControllers();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposeControllers();
+  }
 
   void initControllers() {
     emailController = TextEditingController();
@@ -41,6 +42,7 @@ mixin RegisterMixin on State<RegisterView> {
   }
 
   Future<void> register() async {
+    changeLoading();
     if (formKey.currentState!.validate() && passwordController.text == passwordConfirmController.text) {
       UserModel user = UserModel(
         email: emailController.text,
@@ -52,12 +54,13 @@ mixin RegisterMixin on State<RegisterView> {
       //final response = await context.read<RegisterCubit>().registerUser(user);
       final response = await context.read<RegisterCubit>().signUp(user);
       if (response) {
-        if (mounted) {
-          //await context.read<RegisterCubit>().firstUpdateForId();
+        await safeOperation(() async {
           if (FirebaseAuth.instance.currentUser != null) {
             await context.read<RegisterCubit>().addIdIntoUser(FirebaseAuth.instance.currentUser!.email!);
           }
-          if (!mounted) return;
+        });
+
+        await safeOperation(() async {
           GeneralShowDialog.dialog(
               context: context,
               title: LocaleKeys.dialog_register_succes_title,
@@ -65,9 +68,10 @@ mixin RegisterMixin on State<RegisterView> {
           Future.delayed(const Duration(seconds: 2), () => context.route.pop());
           Future.delayed(
               const Duration(seconds: 2, milliseconds: 500), () => context.route.navigateToPage(const BaseScaffold()));
-        }
+        });
       }
     }
+    changeLoading();
   }
 
   void scrollToBottomOnKeyboardOpen() {

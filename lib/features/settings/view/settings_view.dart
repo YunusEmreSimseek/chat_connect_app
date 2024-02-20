@@ -1,16 +1,18 @@
+import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
+import 'package:chat_connect_app/features/chat/cubit/chat_cubit.dart';
+import 'package:chat_connect_app/features/chat_detail/cubit/chat_detail_cubit.dart';
+import 'package:chat_connect_app/features/home/cubit/home_cubit.dart';
+import 'package:chat_connect_app/features/login/view/login_view.dart';
 import 'package:chat_connect_app/features/profile/view/profile_view.dart';
 import 'package:chat_connect_app/features/settings/cubit/settings_cubit.dart';
-import 'package:chat_connect_app/features/settings/mixin/settings_mixin.dart';
-import 'package:chat_connect_app/product/enums/image_enum.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/widgets/buttons/signs_button.dart';
-import 'package:chat_connect_app/product/widgets/cards/settings_card.dart';
-import 'package:chat_connect_app/product/widgets/dialogs/general_show_dialog.dart';
-import 'package:chat_connect_app/product/widgets/text/appbar_title_text.dart';
+import 'package:chat_connect_app/products/index.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+
+part '../mixin/settings_mixin.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});

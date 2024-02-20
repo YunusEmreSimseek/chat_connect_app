@@ -1,6 +1,6 @@
-import 'package:chat_connect_app/product/firebase/firebase_collections.dart';
-import 'package:chat_connect_app/product/models/chat_model.dart';
-import 'package:chat_connect_app/product/models/message_model.dart';
+import 'package:chat_connect_app/products/firebase/firebase_collections.dart';
+import 'package:chat_connect_app/products/models/chat_model.dart';
+import 'package:chat_connect_app/products/models/message_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class IChatDetailService {

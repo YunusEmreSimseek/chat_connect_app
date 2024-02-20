@@ -1,5 +1,5 @@
-import 'package:chat_connect_app/product/firebase/firebase_collections.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
+import 'package:chat_connect_app/products/firebase/firebase_collections.dart';
+import 'package:chat_connect_app/products/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class IRegisterService {

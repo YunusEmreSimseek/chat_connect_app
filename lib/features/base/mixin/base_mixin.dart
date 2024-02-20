@@ -1,8 +1,4 @@
-import 'package:chat_connect_app/features/base/view/base_scaffold.dart';
-import 'package:chat_connect_app/features/chat/view/chat_view.dart';
-import 'package:chat_connect_app/features/home/view/home_view.dart';
-import 'package:chat_connect_app/features/settings/view/settings_view.dart';
-import 'package:flutter/material.dart';
+part of '../view/base_scaffold.dart';
 
 mixin BaseMixin on State<BaseScaffold> {
   Widget changeBodyPage(int currentIndex) {

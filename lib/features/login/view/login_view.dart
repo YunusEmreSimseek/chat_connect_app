@@ -1,20 +1,15 @@
+import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
+import 'package:chat_connect_app/features/base/view/base_scaffold.dart';
 import 'package:chat_connect_app/features/login/cubit/login_cubit.dart';
-import 'package:chat_connect_app/features/login/mixin/login_mixin.dart';
-import 'package:chat_connect_app/product/constants/project_colors.dart';
-import 'package:chat_connect_app/product/enums/font_size_enum.dart';
-import 'package:chat_connect_app/product/enums/text_field_type_enum.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/widgets/buttons/signs_button.dart';
-import 'package:chat_connect_app/product/widgets/buttons/underline_text_button.dart';
-import 'package:chat_connect_app/product/widgets/field/custom_text_form_field.dart';
-import 'package:chat_connect_app/product/widgets/images/core_image.dart';
-import 'package:chat_connect_app/product/widgets/loadings/loading_widget.dart';
-import 'package:chat_connect_app/product/widgets/text/appbar_title_text.dart';
-import 'package:chat_connect_app/product/widgets/text/custom_text.dart';
+import 'package:chat_connect_app/features/register/view/register_view.dart';
+import 'package:chat_connect_app/products/index.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+
+part '../mixin/login_mixin.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -23,20 +18,7 @@ class LoginView extends StatefulWidget {
   State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> with LoginMixin {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() => chechUser());
-    initControllers();
-  }
-
-  @override
-  void dispose() {
-    disposeControllers();
-    super.dispose();
-  }
-
+class _LoginViewState extends State<LoginView> with BaseViewMixin, LoginMixin {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(

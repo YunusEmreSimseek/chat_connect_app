@@ -1,18 +1,25 @@
-import 'dart:async';
+part of '../view/chat_detail_view.dart';
 
-import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
-import 'package:chat_connect_app/features/chat_detail/cubit/chat_detail_cubit.dart';
-import 'package:chat_connect_app/features/chat_detail/view/chat_detail_view.dart';
-import 'package:chat_connect_app/product/firebase/firebase_collections.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-mixin ChatDetailMixin on State<ChatDetailView> {
+mixin ChatDetailMixin on State<ChatDetailView>, BaseViewMixin<ChatDetailView> {
   Stream<DocumentSnapshot>? stream;
   late final TextEditingController controller;
   late final ScrollController scrollController;
   StreamSubscription? streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    initControllers();
+    initMessages();
+    initAndListenStream();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposeControllers();
+    disposeStream();
+  }
 
   void initAndListenStream() {
     stream = FirebaseCollections.chat.reference.doc(context.read<ChatDetailCubit>().state.currentChat!.id).snapshots();
@@ -20,9 +27,10 @@ mixin ChatDetailMixin on State<ChatDetailView> {
       streamSubscription = stream!.listen((event) async {
         if (event.exists) {
           await context.read<BaseCubit>().fetchChats();
-          if (!mounted) return;
-          context.read<BaseCubit>().sendChatsToStates(context);
-          await context.read<ChatDetailCubit>().getMessages(context);
+
+          directSafeOperarion(() => context.read<BaseCubit>().sendChatsToStates(context));
+
+          safeOperation(() async => await context.read<ChatDetailCubit>().getMessages(context));
         }
       });
     }
@@ -45,10 +53,10 @@ mixin ChatDetailMixin on State<ChatDetailView> {
   }
 
   Future<void> initMessages() async {
-    context.read<BaseCubit>().changeLoading();
+    changeLoading();
     await context.read<ChatDetailCubit>().getMessages(context);
     if (!mounted) return;
-    context.read<BaseCubit>().changeLoading();
+    changeLoading();
   }
 
   void scrollToBottomOnKeyboardOpen(ScrollController controller) {

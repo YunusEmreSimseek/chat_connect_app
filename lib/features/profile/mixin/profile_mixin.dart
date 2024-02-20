@@ -1,26 +1,32 @@
-import 'dart:io';
+part of '../view/profile_view.dart';
 
-import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
-import 'package:chat_connect_app/features/profile/view/profile_view.dart';
-import 'package:chat_connect_app/features/settings/cubit/settings_cubit.dart';
-import 'package:chat_connect_app/product/enums/image_enum.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
-import 'package:chat_connect_app/product/services/pick_manager.dart';
-import 'package:chat_connect_app/product/widgets/dialogs/general_show_dialog.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-
-mixin ProfileMixin on State<ProfileView> {
+mixin ProfileMixin on State<ProfileView>, BaseViewMixin<ProfileView> {
   late final TextEditingController emailController;
   late final GlobalKey<FormState> formKey;
   late final TextEditingController nameController;
   late final TextEditingController passwordController;
   late final TextEditingController phoneNumberController;
   late final ScrollController scrollController;
+  late final List<TextEditingController> controllers;
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposeControllers();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initControllers();
+    setControllersText();
+    controllers = [
+      nameController,
+      phoneNumberController,
+      emailController,
+      passwordController,
+    ];
+  }
 
   void initControllers() {
     emailController = TextEditingController();
@@ -79,18 +85,13 @@ mixin ProfileMixin on State<ProfileView> {
           imageUrl: ImageEnum.defaultUserIcon.value,
           phoneNo: phoneNumberController.text,
           id: context.read<SettingsCubit>().state.loggedInUser!.id);
-      context.read<BaseCubit>().changeLoading();
-      await context.read<SettingsCubit>().updateUser(user);
-      if (!mounted) return;
-      await context.read<BaseCubit>().fetchSignedInUserDetails();
-      if (!mounted) return;
+      changeLoading();
+      safeOperation(() async => await context.read<SettingsCubit>().updateUser(user));
+      safeOperation(() async => await context.read<BaseCubit>().fetchSignedInUserDetails());
       context.read<BaseCubit>().sendSignedInUserToStates(context);
-      await context.read<BaseCubit>().fetchChattedUsers();
-      if (!mounted) return;
+      safeOperation(() async => await context.read<BaseCubit>().fetchChattedUsers());
       context.read<BaseCubit>().sendPostedUsersToHomeState(context);
-      context.read<BaseCubit>().changeLoading();
-
-      if (!mounted) return;
+      changeLoading();
       GeneralShowDialog.dialog(
           context: context,
           title: LocaleKeys.dialog_profile_changes_successful_title.tr(),
@@ -112,11 +113,9 @@ mixin ProfileMixin on State<ProfileView> {
     if (model!.file != null) {
       final XFile image = model.file!;
       final File file = File(image.path);
-      if (!mounted) return;
-      context.read<BaseCubit>().changeLoading();
+      changeLoading();
       await uploadImage(file);
-      if (!mounted) return;
-      context.read<BaseCubit>().changeLoading();
+      changeLoading();
     }
   }
 
@@ -134,15 +133,12 @@ mixin ProfileMixin on State<ProfileView> {
     //UploadTask uploadTask = storageReference.putFile(file);
     TaskSnapshot taskSnapshot = await uploadTask;
     String downloadUrl = await taskSnapshot.ref.getDownloadURL();
-    if (!mounted) return;
     await updateAndFetchUserImage(downloadUrl);
   }
 
   Future<void> updateAndFetchUserImage(String downloadUrl) async {
-    await context.read<SettingsCubit>().updateUserImage(downloadUrl);
-    if (!mounted) return;
-    await context.read<BaseCubit>().fetchSignedInUserDetails();
-    if (!mounted) return;
+    safeOperation(() async => await context.read<SettingsCubit>().updateUserImage(downloadUrl));
+    safeOperation(() async => await context.read<BaseCubit>().fetchSignedInUserDetails());
     context.read<BaseCubit>().sendSignedInUserToStates(context);
   }
 }

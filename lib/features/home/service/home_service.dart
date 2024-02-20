@@ -1,5 +1,5 @@
-import 'package:chat_connect_app/product/firebase/firebase_collections.dart';
-import 'package:chat_connect_app/product/models/post_model.dart';
+import 'package:chat_connect_app/products/firebase/firebase_collections.dart';
+import 'package:chat_connect_app/products/models/post_model.dart';
 
 abstract class IHomeService {
   Future<List<PostModel>?> fetchPosts(List<String> postedUsersIds);

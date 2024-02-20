@@ -1,8 +1,8 @@
 import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
 import 'package:chat_connect_app/features/chat_detail/service/chat_detail_service.dart';
-import 'package:chat_connect_app/product/models/chat_model.dart';
-import 'package:chat_connect_app/product/models/message_model.dart';
-import 'package:chat_connect_app/product/models/user_model.dart';
+import 'package:chat_connect_app/products/models/chat_model.dart';
+import 'package:chat_connect_app/products/models/message_model.dart';
+import 'package:chat_connect_app/products/models/user_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

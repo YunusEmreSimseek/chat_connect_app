@@ -1,15 +1,15 @@
 import 'package:chat_connect_app/features/splash/view/splash_view.dart';
-import 'package:chat_connect_app/product/init/app_start.dart';
-import 'package:chat_connect_app/product/init/bloc_init.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
-import 'package:chat_connect_app/product/init/product_localization.dart';
-import 'package:chat_connect_app/product/utility/theme/my_theme.dart';
+import 'package:chat_connect_app/products/init/app_initialize.dart';
+import 'package:chat_connect_app/products/init/bloc_init.dart';
+import 'package:chat_connect_app/products/init/language/locale_keys.g.dart';
+import 'package:chat_connect_app/products/init/product_localization.dart';
+import 'package:chat_connect_app/products/utilities/theme/my_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   // initialize
-  await AppStart.init();
+  await AppInitialize.init();
   runApp(
     // if you edit the easy localization
     // you can that inside of ProductLocalization

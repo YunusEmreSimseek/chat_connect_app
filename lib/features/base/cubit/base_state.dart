@@ -10,7 +10,6 @@ final class BaseState extends Equatable {
     this.chattedUsers,
     this.postedUsers,
     this.messages,
-    this.isLoading = false,
   });
   final UserModel? loggedInUser;
   final int currentIndex;
@@ -19,7 +18,6 @@ final class BaseState extends Equatable {
   final List<UserModel>? postedUsers;
   final List<ChatModel>? chats;
   final List<MessageModel?>? messages;
-  final bool isLoading;
   BaseState copyWith({
     UserModel? loggedInUser,
     int? currentIndex,
@@ -28,7 +26,6 @@ final class BaseState extends Equatable {
     List<UserModel>? postedUsers,
     List<ChatModel>? chats,
     List<MessageModel?>? messages,
-    bool? isLoading,
   }) {
     return BaseState(
       loggedInUser: loggedInUser ?? this.loggedInUser,
@@ -38,11 +35,9 @@ final class BaseState extends Equatable {
       postedUsers: postedUsers ?? this.postedUsers,
       chats: chats ?? this.chats,
       messages: messages ?? this.messages,
-      isLoading: isLoading ?? this.isLoading,
     );
   }
 
   @override
-  List<Object?> get props =>
-      [currentIndex, isLocalUpdated, loggedInUser, chattedUsers, postedUsers, chats, messages, isLoading];
+  List<Object?> get props => [currentIndex, isLocalUpdated, loggedInUser, chattedUsers, postedUsers, chats, messages];
 }

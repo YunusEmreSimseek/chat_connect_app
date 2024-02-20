@@ -1,12 +1,14 @@
 import 'package:chat_connect_app/features/base/cubit/base_cubit.dart';
-import 'package:chat_connect_app/features/base/mixin/base_mixin.dart';
-import 'package:chat_connect_app/product/enums/icon_size_enum.dart';
-import 'package:chat_connect_app/product/init/language/locale_keys.g.dart';
+import 'package:chat_connect_app/features/chat/view/chat_view.dart';
+import 'package:chat_connect_app/features/home/view/home_view.dart';
+import 'package:chat_connect_app/features/settings/view/settings_view.dart';
+import 'package:chat_connect_app/products/index.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+part '../mixin/base_mixin.dart';
 part 'sub_view/bottom_nav_bar.dart';
 
 class BaseScaffold extends StatefulWidget {
